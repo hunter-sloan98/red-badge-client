@@ -8,6 +8,10 @@ type PropsType = {
 type StateType = {
   username: string,
   password: string,
+  name: string,
+  email: string,
+  birthyear: string,
+  bio: string,
 }
 
 class Signup extends React.Component<PropsType,StateType> {
@@ -16,6 +20,10 @@ class Signup extends React.Component<PropsType,StateType> {
     this.state = {
       username: '',
       password: '',
+      name: '',
+      email: '',
+      birthyear: '',
+      bio:''
     }
   }
 
@@ -26,7 +34,11 @@ class Signup extends React.Component<PropsType,StateType> {
       body: JSON.stringify({
         user: {
           username: this.state.username,
-          password: this.state.password
+          password: this.state.password,
+          name: this.state.name,
+          email: this.state.email,
+          birthyear: this.state.birthyear,
+          bio: this.state.bio
         }
       }),
       headers: new Headers({
@@ -50,11 +62,27 @@ class Signup extends React.Component<PropsType,StateType> {
         <h3 className="signupMain">Sign Up</h3>
       <Form onSubmit={this.handleSubmit}>
         <FormGroup>
-          <Input onChange={(e) => this.setState({username: e.target.value})} name='username' value={this.state.username}   placeholder='Username' required/>
+          <Input onChange={(e) => this.setState({username: e.target.value})} name='username' value={this.state.username}   placeholder='Username*' required/>
         </FormGroup>
         <br/>
         <FormGroup>
-          <Input  onChange={(e) => this.setState({password: e.target.value})} type='password' name='password' value={this.state.password}  placeholder="Password" required/>
+          <Input  onChange={(e) => this.setState({password: e.target.value})} type='password' name='password' value={this.state.password}  placeholder="Password*" required/>
+        </FormGroup>
+        <br/>
+        <FormGroup>
+          <Input  onChange={(e) => this.setState({name: e.target.value})} name='name' value={this.state.name}  placeholder="Name*" required/>
+        </FormGroup>
+        <br/>
+        <FormGroup>
+          <Input  onChange={(e) => this.setState({email: e.target.value})} name='email' value={this.state.email}  placeholder="Email*" required/>
+        </FormGroup>
+        <br/>
+        <FormGroup>
+          <Input  onChange={(e) => this.setState({birthyear: e.target.value})} name='birthyear' value={this.state.birthyear}  placeholder="Birthyear*" required/>
+        </FormGroup>
+        <br/>
+        <FormGroup>
+          <Input  onChange={(e) => this.setState({bio: e.target.value})} name='bio' value={this.state.bio}  placeholder="Bio" />
         </FormGroup>
         <br/>
         <button type='submit'>Signup</button>

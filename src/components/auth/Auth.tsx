@@ -6,7 +6,7 @@ import Login from './Login'
 import NavbarComponent from '../navbar/NavComponent';
 
 type PropsType = {
-  updateToken: any
+  updateToken:  (newToken: string) => void
 }
 
 

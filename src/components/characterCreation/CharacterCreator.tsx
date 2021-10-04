@@ -13,8 +13,12 @@ type StateType = {
       bio: string
 }
 
-export default class CharacterCreator extends React.Component<{}, StateType> {
-  constructor(props: any){
+type PropsType = {
+  token: string | null
+}
+
+export default class CharacterCreator extends React.Component<PropsType, StateType> {
+  constructor(props: PropsType){
     super(props)
     this.state = {
       name: '',
@@ -24,11 +28,11 @@ export default class CharacterCreator extends React.Component<{}, StateType> {
       affiliation:'',
       bio:''
     }
-  }
+  } 
 
   handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    fetch(`http://loacalhost:3005/character/create`, {
+    fetch(`http://localhost:3005/character/create`, {
       method: 'POST',
       body: JSON.stringify({
         character: {
@@ -41,7 +45,8 @@ export default class CharacterCreator extends React.Component<{}, StateType> {
         }
       }),
       headers: new Headers({
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': this.props.token!
       })
     })
     .then(res => res.json())
@@ -51,6 +56,7 @@ export default class CharacterCreator extends React.Component<{}, StateType> {
     .catch(err => {
       console.log(err)
     })
+    window.location.reload()
   }
 
   render(){ //TODO: Seems to be working, but not until I can get the token, validate session is blocking it to the servers
@@ -114,6 +120,7 @@ export default class CharacterCreator extends React.Component<{}, StateType> {
 
 
     </Box>
+    <CharacterDisplay token={this.props.token}/>
       </div>
     )
   }

@@ -1,6 +1,9 @@
 import React from 'react';
-import Blog from './Blog'
 import { Row, Col, Button, Card, CardTitle, CardText, Container } from "reactstrap";
+
+type PropsType = {
+  token: string | null
+}
 
 type StateType = {
   blogs: Array<{
@@ -15,11 +18,7 @@ type StateType = {
   }>
 }
 
-type PropsType = {
-  token: string | null
-}
-
-export default class BlogDisplay extends React.Component<PropsType, StateType> {
+export default class AdminBlogs extends React.Component<PropsType, StateType> {
   constructor(props: PropsType){
     super(props)
     this.state = {

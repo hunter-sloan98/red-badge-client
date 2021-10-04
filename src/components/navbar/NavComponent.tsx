@@ -7,13 +7,16 @@ import UserHome from '../userPage/UserHome'
 import CharacterCreator from '../characterCreation/CharacterCreator';
 import Blog from '../blogPage/Blog'
 import NavBar from './Navbar'
+import MyProfile from '../profile/MyProfile';
+import AuthAdmin from '../auth/AdminAuth/AuthAdmin';
 
 
-// type PropsType = {
-//   logout: any 
-// }
+type PropsType = {
+  logout: () => void
+  token: string | null
+}
 
-const NavbarComponent = () => {
+const NavbarComponent = (props: PropsType) => {
   return(
     <div className='MaidDiv'>
       <div className='NavStyling'>
@@ -21,13 +24,18 @@ const NavbarComponent = () => {
           <li><Link to='/userhome'>User Home</Link></li>
           <li><Link to='/character'>Character Creator</Link></li>
           <li><Link to='/blog'>Blog Posts</Link></li>
+          <li><Link to='/myprofile'>My Profile</Link></li>
+          <li><Link to='/admin'>Admin</Link></li>
+          <li><button onClick={props.logout}>Logout</button></li>
         </ul>
       </div>
       <div className='Routes'>
         <Switch>
           <Route exact path='/userhome'><UserHome/></Route>
-          <Route exact path='/character'><CharacterCreator/></Route>
-          <Route exact path='/blog'><Blog/></Route>
+          <Route exact path='/character'><CharacterCreator token={props.token}/></Route>
+          <Route exact path='/blog'><Blog token={props.token}/></Route>
+          <Route exact path='/myprofile'><MyProfile token={props.token} logout={props.logout}/></Route>
+          <Route exact path='/admin'><AuthAdmin token={props.token}/></Route>
         </Switch>
       </div>
     </div>

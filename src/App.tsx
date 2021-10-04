@@ -9,45 +9,37 @@ import UserHome from './components/userPage/UserHome';
 
 
 function App() {
-  const [sessionToken, setSessionToken] = useState<any | null>('')
+  const [sessionToken, setSessionToken] = useState<string | null>('')
 
-//*Setting our Token  
+  //*Setting our Token  
   useEffect(() => {
     if (localStorage.getItem('token')) {
       setSessionToken(localStorage.getItem('token'));
     }
   }, [])
 
-//*Updating our Token
-  const updateToken = (newToken: any) => {
+  //*Updating our Token
+  const updateToken = (newToken: string) => {
     localStorage.setItem('token', newToken);
     setSessionToken(newToken);
     console.log(newToken)
   };
 
-//*Clearing our Token for logout
+  //*Clearing our Token for logout
   const clearToken = () => {
     localStorage.clear();
     setSessionToken('');
   };
 
-//!GUARDIAN OF THE CYBER GATES: UNFINISHED
-  // const gateKeeper = () => {
-  //   return sessionToken === localStorage.getItem('token') ? (
-  //     <>
-  //     <Navbar/> /*logout={clearToken} token={sessionToken}*/
-  //     </>
-  //   ) : ( 
-  //     <Auth updateToken={updateToken} />
-  //   );
-  // };
+  //*GUARDIAN OF THE CYBER GATES: WORKS!!!!!!!!!!!!!!!!!!!!!!
+  const gateKeeper = () => {
+    return sessionToken === localStorage.getItem('token') ? (<Navbar logout={clearToken} token={sessionToken}/>) 
+    : (<Auth updateToken={updateToken} />);
+  };
 
   return (
     <div className="App">
-      {/* {gateKeeper()} */}
-      <Router>
-        <Navbar/>
-      </Router>
+      {gateKeeper()}
     </div>
   );
 }
