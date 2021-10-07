@@ -86,7 +86,7 @@ export default class CharacterDisplay extends React.Component<PropsType,StateTyp
   characterMapper = () => {
     return this.state.characters.map((character, index) => {
       return (
-        <div key={index} style={{"display":"flex"}}>
+        <div key={index} style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
           <Row >
           <Col sm="6">
             <Card body className="characterCard">

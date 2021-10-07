@@ -3,7 +3,7 @@ import React from 'react';
 export default class UserHome extends React.Component {
   render(){
     return(
-      <div>
+      <div className='homepage'>
         <h1>User Homepage</h1>
         <p>Welcome to the Naruto Fan Club and Character Creator. This application lets you post reviews and critiques of your favorite episodes as well as create your own character from the Naruto universe.</p>
         <br/>

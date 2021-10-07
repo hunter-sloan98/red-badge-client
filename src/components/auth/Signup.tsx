@@ -59,7 +59,7 @@ class Signup extends React.Component<PropsType,StateType> {
   render(){
     return(
       <div>
-        <h2>Signup</h2>
+        <h2 className='signupTitle'>Signup</h2>
       <Form onSubmit={this.handleSubmit}>
         <FormGroup>
           <Input onChange={(e) => this.setState({username: e.target.value})} name='username' value={this.state.username}   placeholder='Username*' required/>

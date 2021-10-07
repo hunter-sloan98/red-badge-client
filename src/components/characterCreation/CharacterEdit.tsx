@@ -56,7 +56,7 @@ export default class CharacterEdit extends React.Component<PropsType, StateType>
   render() {
     return (
       <Modal isOpen={true}>
-        <ModalHeader>Update Profile</ModalHeader>
+        <ModalHeader>Update Character</ModalHeader>
         <ModalBody>
           <Form onSubmit={this.handleSubmit}>
             <FormGroup>

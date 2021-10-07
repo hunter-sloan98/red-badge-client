@@ -2,6 +2,7 @@ import React from 'react';
 import APIURL from '../../helpers/enviroment';
 import Blog from './Blog'
 import { Row, Col, Button, Card, CardTitle, CardText, Container } from "reactstrap";
+import BlogEdit from './BlogEdit';
 
 type StateType = {
   blogs: Array<{
@@ -13,7 +14,10 @@ type StateType = {
     post: string,
     recommend: string,
     creator: string
-  }>
+  }>,
+
+  updateActive: boolean
+  updateBlog: string
 }
 
 type PropsType = {
@@ -24,16 +28,17 @@ export default class BlogDisplay extends React.Component<PropsType, StateType> {
   constructor(props: PropsType){
     super(props)
     this.state = {
+      blogs: [],
+      updateActive: false,
+      updateBlog: '',
       // title: '',
       // date: '',
       // episode: '',
       // rating: '',
       // post: '',
       // recommend: ''
-      blogs: []
     }
   }
-
 
   componentDidMount = () => {
     fetch(`${APIURL}/blog/all`, {
@@ -51,6 +56,21 @@ export default class BlogDisplay extends React.Component<PropsType, StateType> {
       console.log(err)
     })
   }
+
+  editBlog = (post: any) => {
+    this.setState({updateBlog: post})
+  }
+
+  updateOn = () => {
+  this.setState({updateActive: true})
+  }
+
+  updateOff = () => {
+    this.setState({updateActive: false})
+  }
+
+
+  
   blogMapper = () => {
     return this.state.blogs.map((blogs, index) => {
       return (
@@ -65,12 +85,9 @@ export default class BlogDisplay extends React.Component<PropsType, StateType> {
               <CardText>Post: {blogs.post}</CardText>
               <CardText>Recommend: {blogs.recommend}</CardText>
               <CardText>Created by: {blogs.creator}</CardText>
-              <Button>Edit</Button>  
-              {/* onClick={() => {
-              // editUpdateRev(review);
-              // updateOn();
-            }}
-            reviews={reviews}
+              <Button onClick={() => {this.updateOn(); this.editBlog(blogs)}} updateOn={this.updateOn} token={this.props.token}>Edit</Button>  
+               
+            {/* reviews={reviews}
             editUpdateRev={editUpdateRev}
             updateOn={updateOn}
             fetchAll={fetchAll}
@@ -85,6 +102,7 @@ export default class BlogDisplay extends React.Component<PropsType, StateType> {
       );
     });
   };
+
 
   deleteBlog = (blogs: any) => {
     console.log(blogs.id)
@@ -105,6 +123,8 @@ export default class BlogDisplay extends React.Component<PropsType, StateType> {
       <div>
         <h1>Blog Display Component</h1>
         {this.state.blogs.length > 0 ? this.blogMapper() : <p className="noCharacters">You have not made any posts yet.</p>}
+
+        {this.state.updateActive ? ( <BlogEdit updateBlog={this.state.updateBlog} updateOff={this.updateOff} token={this.props.token}/> ) : (<></>)}
       </div>
     )
   }
