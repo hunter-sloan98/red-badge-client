@@ -58,8 +58,7 @@ class Signup extends React.Component<PropsType,StateType> {
   render(){
     return(
       <div>
-        <h2> Signup Page </h2>
-        <h3 className="signupMain">Sign Up</h3>
+        <h2>Signup</h2>
       <Form onSubmit={this.handleSubmit}>
         <FormGroup>
           <Input onChange={(e) => this.setState({username: e.target.value})} name='username' value={this.state.username}   placeholder='Username*' required/>
@@ -70,15 +69,15 @@ class Signup extends React.Component<PropsType,StateType> {
         </FormGroup>
         <br/>
         <FormGroup>
-          <Input  onChange={(e) => this.setState({name: e.target.value})} name='name' value={this.state.name}  placeholder="Name*" required/>
+          <Input  onChange={(e) => this.setState({name: e.target.value})} name='name' value={this.state.name}  placeholder="Name" />
         </FormGroup>
         <br/>
         <FormGroup>
-          <Input  onChange={(e) => this.setState({email: e.target.value})} name='email' value={this.state.email}  placeholder="Email*" required/>
+          <Input  onChange={(e) => this.setState({email: e.target.value})} name='email' value={this.state.email}  placeholder="Email" type='email' pattern='.+@email\.com' />
         </FormGroup>
         <br/>
         <FormGroup>
-          <Input  onChange={(e) => this.setState({birthyear: e.target.value})} name='birthyear' value={this.state.birthyear}  placeholder="Birthyear*" required/>
+          <Input  onChange={(e) => this.setState({birthyear: e.target.value})} name='birthyear' value={this.state.birthyear}  placeholder="Birthyear" />
         </FormGroup>
         <br/>
         <FormGroup>

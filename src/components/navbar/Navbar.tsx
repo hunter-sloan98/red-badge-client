@@ -16,7 +16,7 @@ export default class Navbar extends React.Component<PropsType, {}>{
   render(){
     return(
       <div>
-        <h4>Navbar</h4>
+        <h4>Naruto Fan Club</h4>
         <NavbarComponent  logout={this.props.logout} token={this.props.token} /> 
       </div>
     )

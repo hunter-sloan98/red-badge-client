@@ -16,7 +16,6 @@ type StateType = {
     email: string,
     bio: string,
   }>,
-  // userMapper: () => void
   
 }
 
@@ -48,21 +47,23 @@ export default class AdminUsers extends React.Component<PropsType, StateType> {
 
   
 
-  userMapper = () => {
-    {this.state.users.map((userInfo, index) => (
+  // userMapper = () => {
+  //   {this.state.users.map((userInfo, index) => (
               
-      <tr key={index}>
-        <td>{userInfo.id}</td>
-        <td>{userInfo.role}</td>
-        <td>{userInfo.username}</td>
-        <td>{userInfo.name}</td>
-        <td>{userInfo.birthyear}</td>
-        <td>{userInfo.email}</td>
-        <td>{userInfo.bio}</td>
-        <td><button >Delete</button></td>
-        </tr>
-    ))}
-  }
+  //     <tr key={index}>
+  //       <td>{userInfo.id}</td>
+  //       <td>{userInfo.role}</td>
+  //       <td>{userInfo.username}</td>
+  //       <td>{userInfo.name}</td>
+  //       <td>{userInfo.birthyear}</td>
+  //       <td>{userInfo.email}</td>
+  //       <td>{userInfo.bio}</td>
+  //       <td><button onClick={() => {this.deleteUser(userInfo)}}>Delete</button></td>
+  //       </tr>
+  //   ))}
+  // }
+
+  
 
   
   
@@ -85,23 +86,35 @@ export default class AdminUsers extends React.Component<PropsType, StateType> {
         </tr> 
       </thead>
       <tbody>
-        {/* {this.userMapper()} */}
+      {this.state.users.map((userInfo, index) => (
+              
+              <tr key={index}>
+                <td>{userInfo.id}</td>
+                <td>{userInfo.role}</td>
+                <td>{userInfo.username}</td>
+                <td>{userInfo.name}</td>
+                <td>{userInfo.birthyear}</td>
+                <td>{userInfo.email}</td>
+                <td>{userInfo.bio}</td>
+                <td><button onClick={() => {this.deleteUser(userInfo)}}>Delete</button></td>
+                </tr>
+            ))}
       </tbody>
       </Table>
       </div>
     )
   }
-  // deleteUser = userToDelete => {
-  //   fetch(`http://localhost:3005/user/adminuser/delete/${this.state.users.map((userInfo) => userInfo.id)}`, {
-  //     method: 'DELETE',
-  //     headers: new Headers({
-  //       'Content-Type': 'application/json',
-  //       'Authorization': this.props.token!
-  //     })
-  //   })
-  //   if(window.confirm('Profile will be permantly deleted, please confirm')) {
-  //     console.log('user deleted')
-  //     window.location.reload()
-  //   }
-  // }
+  deleteUser = (userInfo: any) => {
+    fetch(`http://localhost:3005/user/adminuser/delete/${userInfo.id}`, {
+      method: 'DELETE',
+      headers: new Headers({
+        'Content-Type': 'application/json',
+        'Authorization': this.props.token!
+      })
+    })
+    if(window.confirm('Profile will be permantly deleted, please confirm')) {
+      console.log('user deleted')
+      window.location.reload()
+    }
+  }
 }

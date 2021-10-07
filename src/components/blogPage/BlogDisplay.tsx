@@ -51,9 +51,9 @@ export default class BlogDisplay extends React.Component<PropsType, StateType> {
     })
   }
   blogMapper = () => {
-    return this.state.blogs.map((blogs, id) => {
+    return this.state.blogs.map((blogs, index) => {
       return (
-        <div key={id} style={{"display":"flex"}}>
+        <div key={index} style={{"display":"flex"}}>
           <Row >
           <Col sm="6">
             <Card body className="characterCard">
@@ -76,7 +76,7 @@ export default class BlogDisplay extends React.Component<PropsType, StateType> {
             token={props.token}
             className="reviewButton"
             color="warning">Edit*/} 
-            <Button className="reviewButton" color="warning" onClick={this.deleteBlog}>Delete</Button>
+            <Button className="reviewButton" color="warning" onClick={() => {this.deleteBlog(blogs)}}>Delete</Button>
             </Card>
           </Col>
           </Row>
@@ -85,15 +85,15 @@ export default class BlogDisplay extends React.Component<PropsType, StateType> {
     });
   };
 
-  deleteBlog = () => {
-    fetch(`http://localhost:3005/blog/delete/${this.state.blogs[0].id}`, {
+  deleteBlog = (blogs: any) => {
+    console.log(blogs.id)
+    fetch(`http://localhost:3005/blog/delete/${blogs.id}`, {
       method: 'DELETE',
       headers: new Headers({
         'Content-Type': 'application/json',
         'Authorization': this.props.token!
       })
     })
-    console.log(this.state.blogs[0].id)
     if(window.confirm('Blog will be deleted forever, please confirm')) {
       console.log('Blog Deleted')
     }

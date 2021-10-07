@@ -13,6 +13,7 @@ type StateType = {
 type PropsType = {
   token: string | null
   updateOff: () => void
+  updateCharacter: any
 }
 
 export default class CharacterEdit extends React.Component<PropsType, StateType> {
@@ -29,21 +30,24 @@ export default class CharacterEdit extends React.Component<PropsType, StateType>
   }
 
   handleSubmit = () => {
-    
-    fetch(`http://localhost:3005/character/update/:id`, {
+    console.log(this.props.updateCharacter.id)
+    fetch(`http://localhost:3005/character/update/${this.props.updateCharacter.id}`, {
       method: 'PUT',
-      body: JSON.stringify({
+      body: JSON.stringify({ character: {
         name: this.state.name,
         village: this.state.village,
         gender: this.state.gender,
         jutsu: this.state.jutsu,
         affiliation: this.state.affiliation,
         bio: this.state.bio
-      }),
+      }}),
       headers: new Headers({
         'Content-Type': 'application/json',
         'Authorization': this.props.token!
       })
+    })
+    .then((res) => {
+      this.props.updateOff()
     })
   }
 

@@ -51,12 +51,12 @@ export default class CharacterCreator extends React.Component<PropsType, StateTy
     })
     .then(res => res.json())
     .then(data => {
-      console.log(data);
+      // console.log(data);
+      window.location.reload()
     })
     .catch(err => {
       console.log(err)
     })
-    window.location.reload()
   }
 
   render(){ //TODO: Seems to be working, but not until I can get the token, validate session is blocking it to the servers

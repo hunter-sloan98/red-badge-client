@@ -25,6 +25,7 @@ type StateType = {
     village: string
   }>,
   updateActive: boolean
+  updateCharacter: string
 }
 
 type PropsType = {
@@ -38,6 +39,7 @@ export default class CharacterDisplay extends React.Component<PropsType,StateTyp
     this.state = {
       characters: [],
       updateActive: false,
+      updateCharacter: ''
       // id:'',
       // name: '',
       // village: '',
@@ -69,6 +71,10 @@ export default class CharacterDisplay extends React.Component<PropsType,StateTyp
     })
   }
 
+  editCharacter = (char: any) => {
+    this.setState({updateCharacter: char})
+  }
+
   updateOn = () => {
   this.setState({updateActive: true})
   }
@@ -78,23 +84,24 @@ export default class CharacterDisplay extends React.Component<PropsType,StateTyp
   }
 
   characterMapper = () => {
-    return this.state.characters.map((characters, id) => {
+    return this.state.characters.map((character, index) => {
       return (
-        <div key={id} style={{"display":"flex"}}>
+        <div key={index} style={{"display":"flex"}}>
           <Row >
           <Col sm="6">
             <Card body className="characterCard">
-              <CardTitle tag="h3">{characters.name}</CardTitle>
-              <CardText>Village: {characters.village}</CardText>
-              <CardText>Gender: {characters.gender}</CardText>
-              <CardText>Jutsus: {characters.jutsu}</CardText>
-              <CardText>Affiliation: {characters.affiliation}</CardText>
-              <CardText>Bio: {characters.bio}</CardText>
-              <CardText>Created by: {characters.creator}</CardText>
-              <Button onClick={() => { this.updateOn();}}
+              <CardTitle tag="h3">{character.name}</CardTitle>
+              <CardText>Village: {character.village}</CardText>
+              <CardText>Gender: {character.gender}</CardText>
+              <CardText>Jutsus: {character.jutsu}</CardText>
+              <CardText>Affiliation: {character.affiliation}</CardText>
+              <CardText>Bio: {character.bio}</CardText>
+              <CardText>Created by: {character.creator}</CardText>
+              <CardText>ID: {character.id}</CardText>
+              <Button onClick={() => { this.updateOn(); this.editCharacter(character)}}
                 updateOn={this.updateOn}
                 token={this.props.token}>Edit</Button>
-            <Button className="reviewButton" color="warning" onClick={this.deleteCharacter}>Delete</Button>
+            <Button className="reviewButton" color="warning" onClick={() => { this.deleteCharacter(character)}}>Delete</Button>
             </Card>
           </Col>
           </Row>
@@ -103,15 +110,15 @@ export default class CharacterDisplay extends React.Component<PropsType,StateTyp
     });
   };
 
-  deleteCharacter = () => {
-    fetch(`http://localhost:3005/character/delete/${this.state.characters[0].id}`, {
+  deleteCharacter = (character: any) => {
+    fetch(`http://localhost:3005/character/delete/${character.id}`, {
       method: 'DELETE',
       headers: new Headers({
         'Content-Type': 'application/json',
         'Authorization': this.props.token!
       })
     })
-    console.log(this.state.characters[0].id)
+    console.log(character.id)
     if(window.confirm('Character will be permantly deleted, please confirm')) {
       console.log('character deleted')
     }
@@ -123,7 +130,7 @@ export default class CharacterDisplay extends React.Component<PropsType,StateTyp
         <h2>Character Display</h2>
         {this.state.characters.length > 0 ? this.characterMapper() : <p className="noCharacters">You have not made any characters yet.</p>}
 
-        {this.state.updateActive ? ( <CharacterEdit updateOff={this.updateOff} token={this.props.token}/> ) : (<></>)}
+        {this.state.updateActive ? ( <CharacterEdit updateCharacter={this.state.updateCharacter} updateOff={this.updateOff} token={this.props.token}/> ) : (<></>)}
         </div>
       
     )

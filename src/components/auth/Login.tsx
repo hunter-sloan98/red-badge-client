@@ -7,7 +7,7 @@ type StateType = {
 }
 
 type PropsType = {
-  updateToken: any //!TEMPORARY: Cannot find the right type that works so this is a bandaid for now
+  updateToken: (newToken: string) => void //!TEMPORARY: Cannot find the right type that works so this is a bandaid for now
 }
 
 class Login extends React.Component<PropsType,StateType> {
@@ -46,8 +46,7 @@ class Login extends React.Component<PropsType,StateType> {
   render(){
     return(
       <div>
-        <h2> Login Page </h2>
-        <h3 className="signupMain">Login</h3>
+        <h2>Login</h2>
       <Form onSubmit={this.handleSubmit}>
         <FormGroup>
           <Input onChange={(e) => this.setState({username: e.target.value})} name='username' value={this.state.username}   placeholder='Username' required/>

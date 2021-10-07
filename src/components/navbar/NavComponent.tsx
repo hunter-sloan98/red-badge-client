@@ -26,7 +26,7 @@ const NavbarComponent = (props: PropsType) => {
           <li><Link to='/blog'>Blog Posts</Link></li>
           <li><Link to='/myprofile'>My Profile</Link></li>
           <li><Link to='/admin'>Admin</Link></li>
-          <li><button onClick={props.logout}>Logout</button></li>
+          <li><button className='logoutBtn' onClick={props.logout}>Logout</button></li>
         </ul>
       </div>
       <div className='Routes'>

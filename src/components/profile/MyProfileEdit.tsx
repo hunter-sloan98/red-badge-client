@@ -31,12 +31,12 @@ export default class MyProfleEdit extends React.Component<PropsType, StateType> 
     
     fetch(`http://localhost:3005/user/myprofile/update/${this.props.profileID}`, {
       method: 'PUT',
-      body: JSON.stringify({
+      body: JSON.stringify({user: {
         name: this.state.name,
         birthyear: this.state.birthyear,
         email: this.state.email,
         bio: this.state.bio
-      }),
+      }}),
       headers: new Headers({
         'Content-Type': 'application/json',
         'Authorization': this.props.token!

@@ -101,7 +101,6 @@ export default class AdminBlogs extends React.Component<PropsType, StateType> {
   render(){
     return(
       <div>
-        <h1>Blog Display Component</h1>
         {this.state.blogs.length > 0 ? this.blogMapper() : <p className="noCharacters">You have not made any posts yet.</p>}
       </div>
     )

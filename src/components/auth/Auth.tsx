@@ -20,9 +20,8 @@ class Auth extends React.Component<PropsType, {}> {
   render(){
     return(
       <div className='authPage'>
-        <h1> Auth Page </h1>
-        {/* <NavbarComponent /> */}
         <Signup updateToken={this.props.updateToken}/>
+        <br/>
         <Login updateToken={this.props.updateToken}/>
       </div>
     )

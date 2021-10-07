@@ -61,6 +61,7 @@ export default class Blog extends React.Component<PropsType, StateType> {
   render(){
     return(
       <div>
+        <h1>Blog Post</h1>
       <Box
       component="form"
       sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' }, }}

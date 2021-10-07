@@ -109,7 +109,7 @@ export default class MyProfile extends React.Component<PropsType, StateType>{
     return(
       <div>
         <h1>My Profile</h1>
-        <p>Access Level:  </p>
+        <p>Access Level: {this.state.profile.role} </p>
         <p>Name: {this.state.profile.name} </p>
         <p>Birthyear: {this.state.profile.birthyear} </p>
         <p>Email:  {this.state.profile.email}</p>

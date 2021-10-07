@@ -17,9 +17,12 @@ export default class AuthAdmin extends React.Component<PropsType, {}> {
   render(){
     return(
       <div>
-        <h1> Auth Admin </h1>
+        <h1> Admin Dashboard </h1>
+        <h3>Current Users</h3>
         <AdminUsers token={this.props.token}/>
-        <AdminCharacters />
+        <h3>Created Characters</h3>
+        <AdminCharacters token={this.props.token}/>
+        <h3>Blog Feed</h3>
         <AdminBlogs token={this.props.token}/>
       </div>
     )
