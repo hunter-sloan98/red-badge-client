@@ -6,7 +6,8 @@ switch(window.location.hostname) {
     break;
 
   case 'red-badge-project.herokuapp.com':
-    APIURL = 'https://red-badge-project.herokuapp.com/'
+    APIURL = 'https://red-badge-project.herokuapp.com/';
+    break;
 }
 
 export default APIURL;
