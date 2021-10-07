@@ -1,4 +1,5 @@
 import React from 'react';
+import APIURL from '../../helpers/enviroment';
 import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 type StateType = {
@@ -31,7 +32,7 @@ export default class CharacterEdit extends React.Component<PropsType, StateType>
 
   handleSubmit = () => {
     console.log(this.props.updateCharacter.id)
-    fetch(`http://localhost:3005/character/update/${this.props.updateCharacter.id}`, {
+    fetch(`${APIURL}/character/update/${this.props.updateCharacter.id}`, {
       method: 'PUT',
       body: JSON.stringify({ character: {
         name: this.state.name,

@@ -1,5 +1,5 @@
-import { OmitProps } from 'antd/lib/transfer/ListBody';
 import React from 'react';
+import APIURL from '../../helpers/enviroment';
 // import Card from '@mui/material/Card'
 import { Row, Col, Button, Card, CardTitle, CardText, Container } from "reactstrap";
 import CharacterCreator from './CharacterCreator';
@@ -52,7 +52,7 @@ export default class CharacterDisplay extends React.Component<PropsType,StateTyp
   }
 
   componentDidMount = () => {
-    fetch(`http://localhost:3005/character/all`, {
+    fetch(`${APIURL}/character/all`, {
       method: 'GET',
       headers: new Headers({
         'Content-Type': 'application/json'
@@ -111,7 +111,7 @@ export default class CharacterDisplay extends React.Component<PropsType,StateTyp
   };
 
   deleteCharacter = (character: any) => {
-    fetch(`http://localhost:3005/character/delete/${character.id}`, {
+    fetch(`${APIURL}/character/delete/${character.id}`, {
       method: 'DELETE',
       headers: new Headers({
         'Content-Type': 'application/json',

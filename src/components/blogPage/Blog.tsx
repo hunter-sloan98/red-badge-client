@@ -1,4 +1,5 @@
 import React from 'react';
+import APIURL from '../../helpers/enviroment';
 import BlogDisplay from './BlogDisplay'
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
@@ -32,7 +33,7 @@ export default class Blog extends React.Component<PropsType, StateType> {
   //TODO: Works needs some fine tuning on the date, rating, and episode numbers due to the models being intergers
   handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    fetch(`http://localhost:3005/blog/create`, {
+    fetch(`${APIURL}/blog/create`, {
       method: 'POST',
       body: JSON.stringify({
         blog: {

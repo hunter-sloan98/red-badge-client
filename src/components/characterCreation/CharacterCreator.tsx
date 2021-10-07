@@ -1,4 +1,5 @@
 import React from 'react';
+import APIURL from '../../helpers/enviroment';
 import CharacterDisplay from './CharacterDisplay';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
@@ -32,7 +33,7 @@ export default class CharacterCreator extends React.Component<PropsType, StateTy
 
   handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    fetch(`http://localhost:3005/character/create`, {
+    fetch(`${APIURL}/character/create`, {
       method: 'POST',
       body: JSON.stringify({
         character: {

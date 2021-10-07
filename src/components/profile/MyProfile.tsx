@@ -1,4 +1,5 @@
 import React from 'react';
+import APIURL from '../../helpers/enviroment';
 import MyProfleEdit from './MyProfileEdit';
 
 interface profileModel {
@@ -51,7 +52,7 @@ export default class MyProfile extends React.Component<PropsType, StateType>{
 
 
   componentDidMount = () => {
-    fetch(`http://localhost:3005/user/myprofile/:paramID`, {
+    fetch(`${APIURL}/user/myprofile/:paramID`, {
       method: "GET",
       headers: new Headers({
         'Content-Type': 'application/json',
@@ -69,7 +70,7 @@ export default class MyProfile extends React.Component<PropsType, StateType>{
   }
 
   deleteProfile = () => {
-    fetch(`http://localhost:3005/user/myprofile/delete/:paramID`, {
+    fetch(`${APIURL}/user/myprofile/delete/:paramID`, {
       method: 'DELETE',
       headers: new Headers({
         'Content-Type': 'application/json',

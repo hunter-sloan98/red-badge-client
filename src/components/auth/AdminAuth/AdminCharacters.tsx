@@ -1,4 +1,5 @@
 import React from 'react';
+import APIURL from '../../../helpers/enviroment';
 import { Table } from "reactstrap";
 
 type PropsType = {
@@ -28,7 +29,7 @@ export default class AdminCharacters extends React.Component<PropsType, StateTyp
   }
 
   componentDidMount = () => {
-    fetch(`http://localhost:3005/character/all`, {
+    fetch(`${APIURL}/character/all`, {
       method: 'GET',
       headers: new Headers({
         'Content-Type': 'application/json',
@@ -103,7 +104,7 @@ export default class AdminCharacters extends React.Component<PropsType, StateTyp
     )
   }
   deleteUser = (characterInfo: any) => {
-    fetch(`http://localhost:3005/user/adminuser/delete/${characterInfo.id}`, {
+    fetch(`${APIURL}/user/adminuser/delete/${characterInfo.id}`, {
       method: 'DELETE',
       headers: new Headers({
         'Content-Type': 'application/json',

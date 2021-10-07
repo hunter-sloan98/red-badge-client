@@ -1,4 +1,5 @@
 import React from 'react';
+import APIURL from '../../helpers/enviroment';
 import { Form, FormGroup, Input, Button } from 'reactstrap';
 
 type PropsType = {
@@ -29,7 +30,7 @@ class Signup extends React.Component<PropsType,StateType> {
 
   handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    fetch(`http://localhost:3005/user/signup`, {
+    fetch(`${APIURL}/user/signup`, {
       method: 'POST',
       body: JSON.stringify({
         user: {

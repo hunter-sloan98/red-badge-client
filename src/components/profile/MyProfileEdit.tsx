@@ -1,5 +1,5 @@
-import { title } from 'process';
 import React from 'react';
+import APIURL from '../../helpers/enviroment';
 import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 type StateType = {
@@ -29,7 +29,7 @@ export default class MyProfleEdit extends React.Component<PropsType, StateType> 
 
   handleSubmit = () => {
     
-    fetch(`http://localhost:3005/user/myprofile/update/${this.props.profileID}`, {
+    fetch(`${APIURL}/user/myprofile/update/${this.props.profileID}`, {
       method: 'PUT',
       body: JSON.stringify({user: {
         name: this.state.name,

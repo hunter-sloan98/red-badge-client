@@ -1,4 +1,5 @@
 import React from 'react';
+import APIURL from '../../../helpers/enviroment'
 import { Row, Col, Button, Card, CardTitle, CardText, Container } from "reactstrap";
 
 type PropsType = {
@@ -34,7 +35,7 @@ export default class AdminBlogs extends React.Component<PropsType, StateType> {
 
 
   componentDidMount = () => {
-    fetch(`http://localhost:3005/blog/all`, {
+    fetch(`${APIURL}/blog/all`, {
       method: 'GET',
       headers: new Headers({
         'Content-Type': 'application/json'
@@ -85,7 +86,7 @@ export default class AdminBlogs extends React.Component<PropsType, StateType> {
   };
 
   deleteBlog = () => {
-    fetch(`http://localhost:3005/blog/delete/${this.state.blogs[0].id}`, {
+    fetch(`${APIURL}/blog/delete/${this.state.blogs[0].id}`, {
       method: 'DELETE',
       headers: new Headers({
         'Content-Type': 'application/json',
